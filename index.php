@@ -1,24 +1,13 @@
 <?php
-class EmailValidator
+class phoneValidator
 {
-    public function validate($email)
+    public function validate($phone)
     {
-        $pattern = "/^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/";
-        return preg_match($pattern, $email);
+        $pattern = "/(84|0[3|5|7|8|9])+([0-9]{8})\b/g";
+        return preg_match($pattern, $phone);
     }
 }
 
-$validator = new EmailValidator();
+$validator = new phoneValidator();
 
-$validEmails = ["a@gmail.com", "ab@yahoo.com", "abc@hotmail.com"];
-$invalidEmails = ["@gmail.com", "ab@gmail.", "@#abc@gmail.com"];
-
-echo "Valid emails:\n";
-foreach ($validEmails as $email) {
-    echo $email . ": " . ($validator->validate($email) ? "Valid" : "Invalid") . "\n";
-}
-
-echo "\nInvalid emails:\n";
-foreach ($invalidEmails as $email) {
-    echo $email . ": " . ($validator->validate($email) ? "Valid" : "Invalid") . "\n";
-}
+$validator->validate("0986845301") ? "valid" : "invalid";

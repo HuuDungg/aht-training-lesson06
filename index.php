@@ -1,24 +1,18 @@
 <?php
-class EmailValidator
+class accountValidator
 {
-    public function validate($email)
+    public function validate($account)
     {
-        $pattern = "/^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/";
-        return preg_match($pattern, $email);
+        $pattern = "^[_a-z0-9]{6,}$";
+        return preg_match($pattern, $account);
     }
 }
 
-$validator = new EmailValidator();
+$validator = new accountValidator();
 
-$validEmails = ["a@gmail.com", "ab@yahoo.com", "abc@hotmail.com"];
-$invalidEmails = ["@gmail.com", "ab@gmail.", "@#abc@gmail.com"];
 
-echo "Valid emails:\n";
-foreach ($validEmails as $email) {
-    echo $email . ": " . ($validator->validate($email) ? "Valid" : "Invalid") . "\n";
-}
 
-echo "\nInvalid emails:\n";
-foreach ($invalidEmails as $email) {
-    echo $email . ": " . ($validator->validate($email) ? "Valid" : "Invalid") . "\n";
-}
+echo "Valid account:\n" . $validator->validate("validfsdfator") ? "valid" : "in valid";
+
+echo
+"\nInvalid account:\n" . $validator->validate("123456") ? "valid" : "in valid";
